@@ -29,12 +29,18 @@ public class AnimalController {
     @Value("${file.upload-dir}")
     private String uploadDir;
 
+    @GetMapping("/")
+    public String homepage(Model model) {
+        model.addAttribute("title", "Welcome to Animal Tracker");
+        return "index"; 
+    }
+
     @GetMapping("/all")
     public String getAllAnimals(Model model) {
         List<Animal> animals = animalService.getAllAnimals();
         model.addAttribute("animalList", animals);
         model.addAttribute("title", "Animal List");
-        return "list";
+        return "animal-list";
     }
 
     @GetMapping("/{id}")
@@ -42,13 +48,13 @@ public class AnimalController {
         Animal animal = animalService.getAnimalById(id);
         model.addAttribute("animal", animal);
         model.addAttribute("title", "View Animal - " + id);
-        return "view";
+        return "animal-details";
     }
 
     @GetMapping("/createForm")
     public String showCreateForm(Model model) {
         model.addAttribute("title", "Add New Animal");
-        return "createForm";
+        return "animal-create";
     }
 
     @PostMapping("/create")
@@ -66,7 +72,7 @@ public class AnimalController {
         Animal animal = animalService.getAnimalById(id);
         model.addAttribute("animal", animal);
         model.addAttribute("title", "Update Animal - " + id);
-        return "updateForm";
+        return "animal-update";
     }
 
     @PostMapping("/update/{id}")
@@ -94,7 +100,7 @@ public class AnimalController {
         List<Animal> animals = animalService.getAnimalsByName(search);
         model.addAttribute("animalList", animals);
         model.addAttribute("title", "Search Results for: " + search);
-        return "list";
+        return "animal-list";
     }
 
     @GetMapping("/species/{species}")
@@ -102,7 +108,7 @@ public class AnimalController {
         List<Animal> animals = animalService.getAnimalsBySpecies(species);
         model.addAttribute("animalList", animals);
         model.addAttribute("title", "Animals of Species: " + species);
-        return "list";
+        return "animal-list";
     }
 
     private String saveImage(MultipartFile file) {
