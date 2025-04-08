@@ -30,7 +30,11 @@
     <div class="container mt-5">
         <h1>${title}</h1>
         <a href="/animals/createForm" class="btn btn-primary mb-3">Add New Animal</a>
-        
+        <form method="get" action="/animals/name" class="form-inline mb-4">
+            <input type="text" name="search" class="form-control mr-2" placeholder="Search by name..." required>
+            <button type="submit" class="btn btn-outline-light">Search</button>
+        </form>
+
         <table class="table table-striped">
             <thead>
                 <tr>

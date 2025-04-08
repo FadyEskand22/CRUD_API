@@ -31,7 +31,7 @@ The application uses a local directory for storing uploaded images:
 3. Maximum file upload size is set to 10MB
 
 ## Project Structure
-
+### Any endpoint should begin with http://localhost:8081/animals/
 ### Entity
 The `Animal` class is annotated with `@Entity` and contains:
 - `animalId` (Primary Key, auto-generated)
